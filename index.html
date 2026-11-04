@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMW & MINI | Каталог скрытых опций и кодировок</title>
+    <title>BMW & MINI | Кодирование и диагностика Сочи/Адлер</title>
     <style>
         :root {
             --page: #10151c;
@@ -16,52 +16,40 @@
             --accent-soft: rgba(85,169,209,.12);
             --gold: #d5b36a;
             --tg-color: #2AABEE;
+            --max-color: #8c40ff;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
 
         body {
             min-height: 100vh;
-            background:
-                radial-gradient(ellipse at 50% -220px, rgba(48,105,139,.22), transparent 62%),
-                var(--page);
+            background: radial-gradient(ellipse at 50% -220px, rgba(48,105,139,.22), transparent 62%), var(--page);
             color: var(--text);
             line-height: 1.55;
-            padding: 46px 22px 100px;
+            padding: 30px 22px 100px;
         }
 
-        .container {
-            max-width: 1040px;
-            margin: 0 auto;
+        .container { max-width: 1040px; margin: 0 auto; }
+
+        header { padding: 0 2px 28px; margin-bottom: 28px; border-bottom: 1px solid var(--line); text-align: center; }
+        header h1 { font-size: clamp(28px, 4vw, 38px); line-height: 1.1; font-weight: 750; letter-spacing: -1.4px; margin-bottom: 12px;}
+        header h1 span { color: var(--accent); }
+        
+        .geo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 13px;
+            color: #dce5ed;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
 
-        header {
-            padding: 0 2px 28px;
-            margin-bottom: 28px;
-            border-bottom: 1px solid var(--line);
-        }
-
-        header h1 {
-            font-size: clamp(28px, 4vw, 38px);
-            line-height: 1.1;
-            font-weight: 750;
-            letter-spacing: -1.4px;
-        }
-
-        header h1 span {
-            color: var(--accent);
-        }
-
-        header p {
-            margin-top: 9px;
-            color: var(--muted);
-            font-size: 15px;
-        }
+        header p { color: var(--muted); font-size: 14px; }
 
         .selector-box {
             background: linear-gradient(145deg, rgba(30,40,52,.96), rgba(23,30,39,.96));
@@ -72,195 +60,118 @@
             box-shadow: 0 14px 40px rgba(0,0,0,.14);
         }
 
-        .selector-box label {
-            display: block;
-            margin-bottom: 13px;
-            color: #c0ccd7;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.15px;
-            text-transform: uppercase;
-        }
+        .selector-box label { display: block; margin-bottom: 13px; color: #c0ccd7; font-size: 11px; font-weight: 700; letter-spacing: 1.15px; text-transform: uppercase; }
 
-        .models-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-        }
-
+        .models-grid { display: flex; flex-direction: column; gap: 9px; }
+        
         .model-btn {
-            border: 1px solid rgba(255,255,255,.10);
-            background: rgba(255,255,255,.035);
-            color: #dce5ed;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background .18s ease, border-color .18s ease, transform .18s ease;
+            border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.035); color: #dce5ed;
+            padding: 14px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+            transition: all .18s ease; text-align: left; line-height: 1.4;
         }
+        .model-btn span { display: block; font-size: 11px; color: var(--muted); font-weight: 400; margin-top: 4px; }
+        
+        .model-btn:hover { background: var(--accent-soft); border-color: rgba(85,169,209,.48); transform: translateY(-1px); }
+        .model-btn.active { color: #fff; background: #236b91; border-color: #398bb5; box-shadow: 0 4px 14px rgba(35,107,145,.24); }
+        .model-btn.active span { color: #b6d5e6; }
 
-        .model-btn:hover {
-            background: var(--accent-soft);
-            border-color: rgba(85,169,209,.48);
-            transform: translateY(-1px);
+        .model-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: 19px; padding-top: 15px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+
+        /* ПАКЕТЫ */
+        .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 40px; }
+        .package-card {
+            background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px;
+            display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden;
         }
-
-        .model-btn.active {
-            color: #fff;
-            background: #236b91;
-            border-color: #398bb5;
-            box-shadow: 0 4px 14px rgba(35,107,145,.24);
-        }
-
-        .model-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px 22px;
-            margin-top: 19px;
-            padding-top: 15px;
-            border-top: 1px solid var(--line);
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        .model-meta span:last-child {
-            color: #c8d6e2;
-        }
-
-        .category-block {
-            margin-bottom: 36px;
-        }
-
-        .category-title {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            margin-bottom: 14px;
-            color: #e9eff5;
-            font-size: 17px;
-            font-weight: 700;
-            letter-spacing: -.25px;
-        }
-
-        .category-title::before {
-            content: "";
-            width: 3px;
-            height: 18px;
-            flex: 0 0 3px;
-            border-radius: 3px;
-            background: var(--accent);
-        }
-
-        .category-title.popular {
-            color: #e6c987;
-            font-size: 17px;
-            text-transform: none;
-            letter-spacing: -.25px;
-        }
-
-        .category-title.popular::before {
+        .package-card.pro { border-color: var(--gold); box-shadow: 0 8px 25px rgba(213, 179, 106, 0.1); }
+        .package-card.pro::before {
+            content: "ХИТ";
+            position: absolute;
+            top: 22px;
+            right: -32px;
             background: var(--gold);
+            color: #000;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 5px 35px;
+            transform: rotate(45deg);
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
         }
+        .pkg-title { font-size: 18px; font-weight: 750; color: #fff; }
+        .pkg-desc { font-size: 13px; color: var(--muted); line-height: 1.5; flex-grow: 1; }
+        .pkg-desc ul { margin-left: 18px; margin-top: 8px; }
+        .pkg-desc li { margin-bottom: 4px; }
+        
+        /* БЕЗОПАСНОСТЬ */
+        .security-section { margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--line); }
+        .sec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px;}
+        .sec-card { background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 8px;}
+        .sec-icon { font-size: 24px; }
+        .sec-title { font-size: 15px; font-weight: 700; color: #fff; }
+        .sec-text { font-size: 13px; color: var(--muted); line-height: 1.5;}
 
-        .options-list {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 11px;
-        }
+        /* КАТАЛОГ */
+        .category-block { margin-bottom: 36px; }
+        .category-title { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; color: #e9eff5; font-size: 17px; font-weight: 700; letter-spacing: -.25px; }
+        .category-title::before { content: ""; width: 3px; height: 18px; flex: 0 0 3px; border-radius: 3px; background: var(--accent); }
+        
+        .options-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 11px; }
+        .option-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 17px; display: flex; flex-direction: column; gap: 6px; transition: all .18s ease; }
+        .option-card:hover { background: var(--surface-raised); border-color: rgba(255,255,255,.16); transform: translateY(-1px); }
+        .option-name { color: #f4f7fa; font-size: 14px; font-weight: 650; line-height: 1.4; }
+        .option-desc { color: var(--muted); font-size: 13px; line-height: 1.55; }
 
-        .option-card {
-            min-width: 0;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            border-radius: 10px;
-            padding: 16px 17px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            transition: background .18s ease, border-color .18s ease, transform .18s ease;
-        }
+        .info-footer { margin-top: 40px; text-align: center; color: #7f8d9b; font-size: 12px; line-height: 1.6; padding-bottom: 20px; }
 
-        .option-card:hover {
-            background: var(--surface-raised);
-            border-color: rgba(255,255,255,.16);
-            transform: translateY(-1px);
+        /* ГЛАВНАЯ КНОПКА ЗАПИСИ */
+        .main-fab {
+            position: fixed; bottom: 30px; right: 30px; background: #fff; color: #000;
+            padding: 16px 28px; border-radius: 50px; font-weight: 700; font-size: 15px;
+            display: flex; align-items: center; gap: 10px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+            cursor: pointer; transition: all 0.25s ease; z-index: 998; border: none; outline: none;
         }
+        .main-fab:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 16px 40px rgba(255,255,255, 0.2); }
 
-        .option-card.popular-card {
-            border-left: 2px solid var(--gold);
+        /* МОДАЛЬНОЕ ОКНО */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); z-index: 999;
+            align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;
         }
-
-        .option-name {
-            color: #f4f7fa;
-            font-size: 14px;
-            font-weight: 650;
-            line-height: 1.4;
+        .modal.show { display: flex; opacity: 1; }
+        .modal-content {
+            background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+            padding: 30px; width: 90%; max-width: 400px; text-align: center; position: relative;
+            transform: translateY(20px); transition: transform 0.3s ease; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-
-        .option-desc {
-            color: var(--muted);
-            font-size: 13px;
-            line-height: 1.55;
+        .modal.show .modal-content { transform: translateY(0); }
+        .close-btn {
+            position: absolute; top: 15px; right: 15px; color: var(--muted); font-size: 24px;
+            cursor: pointer; transition: color 0.2s; line-height: 1;
         }
-
-        .info-footer {
-            margin-top: 42px;
-            padding: 18px 2px 0;
-            border-top: 1px solid var(--line);
-            color: #7f8d9b;
-            font-size: 12px;
-            line-height: 1.6;
-            margin-bottom: 20px;
+        .close-btn:hover { color: #fff; }
+        .modal-title { font-size: 20px; font-weight: 750; color: #fff; margin-bottom: 10px; }
+        .modal-desc { font-size: 14px; color: var(--muted); margin-bottom: 25px; line-height: 1.5; }
+        
+        .messenger-btns { display: flex; flex-direction: column; gap: 12px; }
+        .btn-msg {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            padding: 15px; border-radius: 10px; font-weight: 600; font-size: 16px;
+            text-decoration: none; color: #fff; transition: opacity 0.2s;
         }
-
-        /* Кнопка связи (Telegram) */
-        .tg-button {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            background: var(--tg-color);
-            color: #fff;
-            text-decoration: none;
-            padding: 16px 28px;
-            border-radius: 50px;
-            font-weight: 650;
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 12px 30px rgba(42, 171, 238, 0.35);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999;
-        }
-
-        .tg-button:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 16px 40px rgba(42, 171, 238, 0.5);
-            background: #34b3f3;
-        }
-
-        .tg-icon {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
+        .btn-msg:hover { opacity: 0.9; }
+        
+        .btn-tg { background: var(--tg-color); }
+        .btn-max { background: var(--max-color); }
+        
+        .btn-msg svg { width: 22px; height: 22px; fill: currentColor; }
 
         @media (max-width: 680px) {
-            body { padding: 28px 15px 90px; }
-            header { padding-bottom: 22px; margin-bottom: 22px; }
-            .selector-box { padding: 17px; margin-bottom: 28px; }
-            .options-list { grid-template-columns: 1fr; }
-            .option-card { padding: 15px; }
-            
-            .tg-button {
-                bottom: 20px;
-                right: 15px;
-                left: 15px;
-                justify-content: center;
-                padding: 16px;
-                font-size: 16px;
-            }
+            body { padding: 20px 15px 110px; } /* Увеличен отступ до 110px */
+            .model-btn { font-size: 14px; padding: 12px 14px;}
+            .main-fab { bottom: 20px; right: 15px; left: 15px; justify-content: center; width: calc(100% - 30px); }
         }
     </style>
 </head>
@@ -268,159 +179,310 @@
 
     <div class="container">
         <header>
+            <div class="geo-badge">
+                📍 Работа на выезд: Сириус / Адлер / Сочи / Поляна
+            </div>
             <h1>BMW & <span>MINI Coding</span></h1>
-            <p>Справочник по кодированию и диагностике (F-серия) в Сочи/Адлере</p>
+            <p>Активация скрытых опций и дилерская диагностика</p>
         </header>
+
         <div class="selector-box">
             <label>Выбери свой кузов</label>
             <div class="models-grid" id="modelsGrid"></div>
             
             <div class="model-meta">
                 <span id="selectedModelLabel">Выбран: BMW</span>
-                <span id="optionsCountLabel">Доступно опций: 0</span>
+                <span id="optionsCountLabel">Опций: 0</span>
+            </div>
+        </div>
+
+        <h2 class="category-title" style="margin-bottom: 20px; color: #e6c987;">💎 Комплексные пакеты</h2>
+        <div class="packages-grid">
+            <div class="package-card">
+                <div class="pkg-title">Пакет «Комфорт»</div>
+                <div class="pkg-desc">
+                    Базовые функции, чтобы машина не бесила каждый день:
+                    <ul>
+                        <li>Память Start-Stop (не глохнет)</li>
+                        <li>Отключение писка ремней</li>
+                        <li>Складывание зеркал с ключа сразу</li>
+                        <li>Стекла едут при открытой двери</li>
+                        <li>Мультимедиа гаснет при выходе</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="package-card pro">
+                <div class="pkg-title">Пакет «Sport»</div>
+                <div class="pkg-desc">
+                    Драйв и агрессивный вид:
+                    <ul>
+                        <li>Спортивная АКПП (2TB) + Launch</li>
+                        <li>Режим вождения Sport+ (DTC)</li>
+                        <li>Спорт-приборы (л.с. и Нм)</li>
+                        <li>Анимация M-Performance</li>
+                        <li>Цифровой спидометр</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div class="pkg-title">Пакет «Максимум»</div>
+                <div class="pkg-desc">
+                    Всё, что поддерживает твой кузов + проверка:
+                    <ul>
+                        <li>Активация ВСЕХ доступных опций из каталога ниже</li>
+                        <li>Полная диагностика блоков (ISTA)</li>
+                        <li>Сброс ошибок и истории</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <div id="catalogContainer"></div>
 
+        <div class="security-section">
+            <h2 class="category-title">🛡️ Безопасность и гарантия</h2>
+            <div class="sec-grid">
+                <div class="sec-card">
+                    <div class="sec-icon">💾</div>
+                    <div class="sec-title">Полный бэкап</div>
+                    <div class="sec-text">Перед любым изменением сохраняется заводская конфигурация каждого блока. Всегда можно откатить в сток.</div>
+                </div>
+                <div class="sec-card">
+                    <div class="sec-icon">🛠️</div>
+                    <div class="sec-title">Без «колхоза»</div>
+                    <div class="sec-text">Активируются только те функции, которые уже заложены заводом-изготовителем BMW. Никаких обманок и врезок в проводку.</div>
+                </div>
+                <div class="sec-card">
+                    <div class="sec-icon">✅</div>
+                    <div class="sec-title">Сохранение гарантии</div>
+                    <div class="sec-text">Работаю оригинальным инженерным ПО. Сторонние прошивки в двигатель не заливаются, дилер не видит вмешательства.</div>
+                </div>
+            </div>
+        </div>
+
         <div class="info-footer">
-            Работаем профильным софтом: E-Sys / ISTA+, а также лицензионными BimmerCode и BimmerLink. 
-            Всё делается штатно, без потери гарантии и вскрытия электронных блоков. Список носит справочный характер, 
-            доступность некоторых функций зависит от комплектации и года выпуска автомобиля.
+            Кодирование осуществляется профильным софтом (E-Sys, ISTA, BimmerCode). Список носит справочный характер, доступность некоторых функций зависит от комплектации, года выпуска автомобиля и установленных электронных блоков.
         </div>
     </div>
 
-    <!-- Плавающая кнопка Telegram -->
-    <a href="#" id="tgLink" class="tg-button" target="_blank">
-        <svg class="tg-icon" viewBox="0 0 24 24">
-            <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/>
-        </svg>
-        Записаться на кодирование
-    </a>
+    <!-- ГЛАВНАЯ КНОПКА -->
+    <button class="main-fab" onclick="openModal()">
+        Связаться с мастером
+    </button>
+
+    <!-- МОДАЛЬНОЕ ОКНО -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="modal-title">Связь с мастером</div>
+            <div class="modal-desc">Выбери удобный мессенджер. Я сразу получу информацию о выбранном кузове.</div>
+            
+            <div class="messenger-btns">
+                <a href="#" id="maxBtn" class="btn-msg btn-max" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.5 11.5l-2.5 3.5h-1.5l1.5-2.5h-4l1.5 2.5h-1.5l-2.5-3.5h1.5l1.5 2.5 1.5-2.5h4z"/></svg>
+                    MAX
+                </a>
+                <a href="#" id="tgBtn" class="btn-msg btn-tg" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/></svg>
+                    Telegram
+                </a>
+            </div>
+        </div>
+    </div>
 
     <script>
         // ==========================================
-        // ВАЖНО: ВПИШИ СВОЙ ЮЗЕРНЕЙМ В ТЕЛЕГЕ НИЖЕ
+        // ВАЖНО: ВПИШИ СВОИ ДАННЫЕ СЮДА!
         // ==========================================
-        const tgUsername = "@aizen_0101"; 
+        const tgUsername = "aizen_0101"; // без @
+        const maxLink = "https://max.ru/u/f9LHodD0cOJYY6t_XzHxaotudemrItjKcJ5JoHw-EXoRTRAXsN1Jj4_wgXc"; // Прямая ссылка на твой профиль в MAX
+
+        const modal = document.getElementById("contactModal");
+        function openModal() { modal.classList.add("show"); }
+        function closeModal() { modal.classList.remove("show"); }
+        window.onclick = function(event) { if (event.target == modal) closeModal(); }
 
         const modelsData = {
-            "F20 / F30": {
-                name: "1 / 3 Series (F20, F30 и производные)",
-                popular: [
-                    { name: "Память кнопки Start-Stop", desc: "Машина запоминает, что ты отключил Start-Stop, и больше не глушит мотор сама при каждом перезапуске зажигания." },
-                    { name: "Складывание зеркал с брелока (без задержки)", desc: "Зеркала складываются моментально при коротком нажатии на кнопку закрытия на ключе (не нужно зажимать и ждать 3 секунды)." },
-                    { name: "Спортивная коробка передач (опция 2TB)", desc: "Изменение логики работы АКПП при наличии необходимого оборудования и поддерживаемой конфигурации." },
-                    { name: "Режим вождения Sport+", desc: "Активация режима Sport+ на приборке и кнопке режимов. Меняет настройки системы стабилизации. Поведение зависит от конфигурации автомобиля." },
-                    { name: "Цифровой спидометр", desc: "Показ текущей скорости движения крупными цифрами по центру приборной панели." },
-                    { name: "Спортивные приборы", desc: "Вывод шкал реальной мощности (л.с. / кВт) и крутящего момента (Нм) на центральный монитор." },
-                    { name: "Отключение омывателей фар", desc: "Отключает автоматическое срабатывание омывателей фар." },
-                    { name: "Анимация M-Performance при старте", desc: "Замена стандартной заставки на экране мультимедиа на стильный логотип ///M." }
-                ],
+            "1, 2, 3, 4 Series": {
+                name: "1, 2, 3, 4 Series (F-кузова)",
+                codes: "F20, F21, F22, F23, F87, F30, F31, F34, F35, F80, F32, F33, F36, F82, F83",
                 all: [
-                    { cat: "Салон, комфорт и стекла", name: "Отключение звука непристегнутого ремня", desc: "Отключает назойливый зуммер для водителя и пассажира. Индикация на приборке работает штатно, подушки безопасности активны." },
-                    { cat: "Салон, комфорт и стекла", name: "Работа стеклоподъемников при открытой двери", desc: "Стекло не останавливается, если распахнуть дверь во время его автоматического подъема/опускания." },
-                    { cat: "Салон, комфорт и стекла", name: "Выключение мультимедиа при открытии двери", desc: "Музыка и экран выключаются сразу после открытия водительской двери на заглушенной машине." },
-                    { cat: "Салон, комфорт и стекла", name: "Комфортная посадка (Easy Entry)", desc: "Для электросидений: кресло отъезжает назад при открытии двери и возвращается в твое положение при запуске двигателя." },
-                    { cat: "Салон, комфорт и стекла", name: "Запоминание рециркуляции климата", desc: "Климат-контроль запоминает последнее состояние заслонки рециркуляции." },
-                    { cat: "Оптика и внешнее освещение", name: "Пункт вкл/выкл ДХО в меню монитора", desc: "Добавляет галочку в настройки автомобиля, позволяющую полностью погасить ангельские глазки при заведенном моторе." },
-                    { cat: "Оптика и внешнее освещение", name: "Стробоскопы (Дальний + Туманки)", desc: "При моргании или включении дальнего света, противотуманные фары автоматически гаснут, создавая эффект стробоскопов." },
-                    { cat: "Оптика и внешнее освещение", name: "Туманки в режиме Cornering Lights", desc: "Мягкое включение левой или правой туманки при вращении руля на малой скорости для подсветки поворотов и дворов." },
-                    { cat: "Оптика и внешнее освещение", name: "Моргание поворотников 5 раз вместо 3", desc: "При легком касании рычага поворотник моргает 5 раз (удобно для перестроения на трассе)." },
-                    { cat: "Оптика и внешнее освещение", name: "Яркость ангельских глазок на 100% при ближнем", desc: "Кольца не притухают при включении ближнего света, а горят на максимальную яркость." },
-                    { cat: "Оптика и внешнее освещение", name: "Подсветка дверных ручек при движении назад", desc: "Светодиоды в наружных ручках загораются при включении задней передачи, освещая бордюры." },
-                    { cat: "Мультимедиа и приборная панель", name: "Логотип M-Performance на приборной панели", desc: "Вывод логотипа ///M в нижней части дисплея приборки (работает на расширенных приборках)." },
-                    { cat: "Мультимедиа и приборная панель", name: "Рингтон телефона через колонки", desc: "Штатная аудиосистема воспроизводит мелодию твоего смартфона при звонке, а не стандартную трель BMW." },
-                    { cat: "Мультимедиа и приборная панель", name: "Видео и кодеки в движении", desc: "Изменение ограничения воспроизведения видео. Возможность зависит от головного устройства и версии ПО." },
-                    { cat: "Мультимедиа и приборная панель", name: "Отображение температуры шин", desc: "В меню давления (RDC) дополнительно выводится точная температура каждого колеса в градусах." },
-                    { cat: "Мультимедиа и приборная панель", name: "Звук постановки на охрану (пик-пик)", desc: "Звуковое подтверждение постановки и снятия с охраны при наличии штатной сигнализации." },
-                    { cat: "Диагностика и сервис", name: "Комплексная диагностика ISTA / BimmerLink", desc: "Глубокое чтение всех блоков управления, расшифровка ошибок и удаление истории неисправностей." },
-                    { cat: "Диагностика и сервис", name: "Регистрация замены аккумулятора", desc: "Прописывание нового АКБ (смена емкости и типа), сброс адаптаций датчика IBS для правильной зарядки." }
+                    { cat: "Двигатель и Трансмиссия", name: "Память кнопки Start-Stop", desc: "Машина запоминает, что ты отключил глушение мотора на светофорах, и не включает его сама при следующем запуске." },
+                    { cat: "Двигатель и Трансмиссия", name: "Отключение Start-Stop по умолчанию", desc: "Система всегда отключена при запуске двигателя (горит лампочка OFF), независимо от прошлого состояния." },
+                    { cat: "Двигатель и Трансмиссия", name: "Спортивная автоматическая коробка (2TB)", desc: "Прошивка логики спорт-коробки. Переключения становятся быстрее, жестче, активируется Launch Control (старт с двух педалей) и честный ручной режим без автопереключения вверх в отсечке." },
+                    { cat: "Двигатель и Трансмиссия", name: "Активация режима Sport+", desc: "Появление режима Sport+ на приборке и селекторе. Педаль газа становится острее, а система стабилизации переходит в режим DTC (допускает легкие заносы)." },
+                    { cat: "Двигатель и Трансмиссия", name: "Запуск двигателя в режиме Eco Pro / Sport", desc: "Автомобиль по умолчанию заводится в выбранном тобой режиме вместо стандартного Comfort." },
+                    { cat: "Двигатель и Трансмиссия", name: "Функция наката (Sailing)", desc: "В режиме Eco Pro коробка размыкает сцепление при отпускании газа (движение накатом на холостых)." },
+                    
+                    { cat: "Салон и Комфорт", name: "Отключение зуммера ремней безопасности", desc: "Убирает звуковой сигнал при непристегнутом ремне водителя и пассажира. Индикация на приборке сохраняется, подушки безопасности активны." },
+                    { cat: "Салон и Комфорт", name: "Складывание зеркал с ключа (без задержки)", desc: "Зеркала складываются моментально при одном коротком нажатии на кнопку закрытия на ключе (не нужно зажимать кнопку на 3 секунды)." },
+                    { cat: "Салон и Комфорт", name: "Работа стеклоподъемников при открытой двери", desc: "Стекло продолжает автоматически закрываться/открываться в одно касание, даже если ты открыл дверь во время его движения." },
+                    { cat: "Салон и Комфорт", name: "Выключение мультимедиа при открытии двери", desc: "Музыка и дисплей тухнут сразу после открытия водительской двери на заглушенной машине. Не нужно нажимать кнопку Start/Stop дважды." },
+                    { cat: "Салон и Комфорт", name: "Комфортная посадка (Easy Entry)", desc: "Для сидений с электропамятью: руль поднимается, а кресло отъезжает назад при открытии двери для удобного выхода. Возвращается при запуске двигателя." },
+                    { cat: "Салон и Комфорт", name: "Память подогрева сидений", desc: "Кресла запоминают последний уровень подогрева на 15 минут или на 24 часа. Удобно при коротких остановках у магазина." },
+                    { cat: "Салон и Комфорт", name: "Память рециркуляции климат-контроля", desc: "Запоминание последнего состояния заслонки забора воздуха (с улицы или из салона)." },
+                    { cat: "Салон и Комфорт", name: "Акустическое подтверждение (Пик-Пик)", desc: "Короткий звуковой сигнал штатной сиреной при постановке и снятии с охраны (работает при наличии заводской сигнализации)." },
+                    { cat: "Салон и Комфорт", name: "Плавное закрытие окон", desc: "Стекла замедляют ход в самом конце закрытия, исключая резкий удар о рамку двери." },
+
+                    { cat: "Оптика и Освещение", name: "Отключение омывателей фар", desc: "Полное программное отключение форсунок. Экономит омывайку ведрами и оставляет капот чистым." },
+                    { cat: "Оптика и Освещение", name: "Пункт отключения ДХО в меню iDrive", desc: "Позволяет полностью погасить ангельские глазки при заведенном моторе через настройки в головном устройстве." },
+                    { cat: "Оптика и Освещение", name: "Туманки в режиме Cornering Lights", desc: "При вращении руля или включении поворотника на малой скорости плавно загорается левая или правая ПТФ для подсветки слепых зон во дворах." },
+                    { cat: "Оптика и Освещение", name: "Стробоскопы (ПТФ + Дальний)", desc: "При моргании или постоянном включении дальнего света, противотуманные фары автоматически гаснут." },
+                    { cat: "Оптика и Освещение", name: "Яркость ангельских глазок на 100%", desc: "Кольца не притухают при включении ближнего света или габаритов, а всегда горят на максимальную яркость." },
+                    { cat: "Оптика и Освещение", name: "Поворотники в 5 морганий", desc: "При легком касании рычага (режим вежливого поворотника) он моргает 5 раз вместо 3. Идеально для перестроений на трассе." },
+                    { cat: "Оптика и Освещение", name: "Задние габариты работают днем", desc: "Задние LED-полосы (реснички) горят всегда вместе с передними ДХО в дневном режиме (Скандинавский свет)." },
+                    { cat: "Оптика и Освещение", name: "Подсветка дверных ручек при заднем ходе", desc: "Внешние светодиоды в ручках загораются при включении реверса, освещая бордюры и зону задних колес." },
+                    { cat: "Оптика и Освещение", name: "Brake Force Display (Мигающий стоп-сигнал)", desc: "При экстренном торможении стоп-сигналы начинают агрессивно моргать, предупреждая водителей сзади." },
+
+                    { cat: "Мультимедиа и Приборная панель", name: "Видео в движении (VIM)", desc: "Снятие заводской блокировки скорости на просмотр видео с USB-накопителей или DVD во время езды." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Чтение дополнительных видеокодеков", desc: "Поддержка воспроизведения видео в форматах Ogg, Xvid, VCD (зависит от головного устройства)." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Цифровой спидометр", desc: "Вывод текущей скорости крупными цифрами по центру на экране бортового компьютера в приборной панели (V= км/ч)." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Спортивные приборы", desc: "Отображение стильных шкал реальной мощности (л.с. или кВт) и крутящего момента (Нм) на центральном мониторе." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Цвет спортивных приборов", desc: "Смена классического оранжевого цвета спортивных шкал на серебристо-красный дизайн." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Логотип M-Performance на приборке", desc: "Вывод эмблемы ///M в нижней части дисплея приборной панели (только для приборок с расширенным дисплеем)." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Анимация M-Performance при старте ГУ", desc: "Замена стандартной заставки BMW при включении зажигания на стильную анимацию ///M, Alpina или Rolls-Royce." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Отображение температуры и давления шин", desc: "В меню давления (RDC) выводится не только давление в барах, но и точная температура каждого колеса в градусах." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Рингтон телефона через динамики авто", desc: "Машина воспроизводит оригинальную мелодию звонка твоего смартфона вместо стандартной трели BMW." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Звуковое оформление (Гонг)", desc: "Изменение звуков системных предупреждений, поворотников и ремней на приятный стиль от Rolls-Royce, BMW i или MINI." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Отключение юридического предупреждения", desc: "Убирает назойливый текст с предупреждением об ответственности при запуске мультимедиа или включении камеры заднего вида." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Меню компаса", desc: "Добавление графического компаса с гироскопом на экран магнитолы." },
+
+                    { cat: "Диагностика и Сервис", name: "Регистрация замены аккумулятора", desc: "Прописывание нового АКБ (изменение емкости, смена типа с кислотного на AGM). Сброс адаптаций датчика IBS для правильной зарядки." },
+                    { cat: "Диагностика и Сервис", name: "Чтение и расшифровка ошибок", desc: "Комплексная проверка всех электронных блоков дилерским софтом (ISTA/BimmerLink)." },
+                    { cat: "Диагностика и Сервис", name: "Сброс сервисных интервалов", desc: "Обнуление счетчиков замены масла, тормозных колодок, тормозной жидкости или технического осмотра." }
                 ]
             },
-            "F10": {
-                name: "5 Series (F10 / F11)",
-                popular: [
-                    { name: "Память системы Start-Stop", desc: "Отключение навязчивого глушения двигателя. Машина запоминает нажатую кнопку." },
-                    { name: "Складывание зеркал с брелока", desc: "Зеркала складываются сразу при закрытии машины с ключа (или с сенсора комфортного доступа)." },
-                    { name: "Закрытие багажника с ключа/кнопки в одно касание", desc: "Для авто с электроприводом: багажник закрывается коротким нажатием с брелока или кнопки в ногах водителя." },
-                    { name: "Спортивная автоматическая коробка передач (2TB)", desc: "Перепрошивка алгоритма АКПП: молниеносные переключения, четкий ручной режим, поддержка лепестков." },
-                    { name: "Режим вождения Sport+", desc: "Добавление режима Sport+ для отключения ошейников стабилизации и максимальной отдачи мотора." },
-                    { name: "Цифровой спидометр", desc: "Точная скорость в цифрах на экране бортового компьютера." },
-                    { name: "Отключение омывателя фар", desc: "Отключение форсунок оптики для экономии жидкости и чистой машины." },
-                    { name: "Заставка M-Performance", desc: "Смена приветственного экрана NBT/CIC на ///M стиль." }
-                ],
+            "5, 6, 7 Series": {
+                name: "5, 6, 7 Series (F-кузова)",
+                codes: "F10, F11, F07, F18, F06, F12, F13, F01, F02, F03, F04",
                 all: [
-                    { cat: "Салон, комфорт и багажник", name: "Отключение звука ремней безопасности", desc: "Убирает писк зуммера непристегнутых ремней при движении." },
-                    { cat: "Салон, комфорт и багажник", name: "Остановка стекол при открытии двери отключена", desc: "Стеклоподъемники продолжают работу даже при открытии дверей." },
-                    { cat: "Салон, комфорт и багажник", name: "Выключение магнитолы при открытии двери", desc: "Полное отключение мультимедиа, когда водитель выходит из заглушенной машины." },
-                    { cat: "Салон, комфорт и багажник", name: "Комфортный выход (Easy Entry)", desc: "Руль поднимается вверх, а электросиденье отъезжает назад при открытии двери." },
-                    { cat: "Салон, комфорт и багажник", name: "Память подогрева сидений (24 часа)", desc: "Если заглушил машину ненадолго, подогрев не придется включать заново." },
-                    { cat: "Оптика и внешнее освещение", name: "Яркость колец DRL на 100% при габаритах/ближнем", desc: "Ангельские глазки не приглушают свет ночью." },
-                    { cat: "Оптика и внешнее освещение", name: "Подсветка поворотов (Cornering Lights)", desc: "При повороте руля или включении поворотника плавно загорается туманка с нужной стороны." },
-                    { cat: "Оптика и внешнее освещение", name: "Стробоскопы", desc: "Туманки отключаются в момент моргания дальним светом." },
-                    { cat: "Оптика и внешнее освещение", name: "Задние габариты работают днем", desc: "Задние LED-полосы горят всегда вместе с передними ходовыми огнями." },
-                    { cat: "Мультимедиа и звук", name: "Спортивные приборы", desc: "Шкалы мощности и крутящего момента на центральном дисплее." },
-                    { cat: "Мультимедиа и звук", name: "Логотип M-Performance на приборке", desc: "Вывод эмблемы на дисплее щитка приборов (для Black Panel / 6WA)." },
-                    { cat: "Мультимедиа и звук", name: "Видео с USB в движении", desc: "Снятие ограничения скорости на просмотр фильмов и клипов." },
-                    { cat: "Диагностика и сервис", name: "Диагностика блоков", desc: "Чтение и сброс ошибок, глубокая проверка электроники." },
-                    { cat: "Диагностика и сервис", name: "Регистрация замены АКБ", desc: "Прописка нового аккумулятора." }
+                    { cat: "Двигатель и Трансмиссия", name: "Память кнопки Start-Stop", desc: "Запоминание отключенного состояния системы старт-стоп навсегда." },
+                    { cat: "Двигатель и Трансмиссия", name: "Спортивная автоматическая коробка (2TB)", desc: "Смена алгоритмов коробки передач 8HP. Быстрые переключения, честный ручной режим в отсечке, поддержка лепестков." },
+                    { cat: "Двигатель и Трансмиссия", name: "Активация режима Sport+", desc: "Открытие самого агрессивного режима с отключением частичной стабилизации." },
+                    { cat: "Двигатель и Трансмиссия", name: "Режим старта по умолчанию", desc: "Машина заводится в Eco Pro или Sport, минуя режим Comfort." },
+                    
+                    { cat: "Салон и Комфорт", name: "Закрытие багажника с ключа/кнопки в одно касание", desc: "Для автомобилей с электроприводом (HKL): багажник закрывается коротким нажатием с брелока или кнопки в салоне (не нужно стоять рядом и держать кнопку)." },
+                    { cat: "Салон и Комфорт", name: "Отключение зуммера ремней", desc: "Убирает писк при непристегнутом ремне водителя и пассажира." },
+                    { cat: "Салон и Комфорт", name: "Складывание зеркал при закрытии авто", desc: "Зеркала складываются моментально с пульта или сенсора комфортного доступа на ручке двери." },
+                    { cat: "Салон и Комфорт", name: "Работа стекол при открытой двери", desc: "Автоматический доводчик стекол не обрубается при открытии дверей." },
+                    { cat: "Салон и Комфорт", name: "Отключение магнитолы при выходе", desc: "Музыка и дисплей тухнут сразу после открытия водительской двери на заглушенной машине." },
+                    { cat: "Салон и Комфорт", name: "Легкая посадка (Easy Entry)", desc: "Электроруль отъезжает вверх, а сиденье назад при выходе из автомобиля." },
+                    { cat: "Салон и Комфорт", name: "Отвязка яркости приборки от колесика", desc: "Приборка светится ярко, в то время как контурная подсветка салона (Ambient Light) регулируется колесиком отдельно." },
+                    { cat: "Салон и Комфорт", name: "Память подогрева и вентиляции", desc: "Сохранение уровня климата сидений при коротких стоянках." },
+
+                    { cat: "Оптика и Освещение", name: "Отключение омывателя фар", desc: "Программное отключение выезда форсунок. Экономия жидкости и чистый бампер." },
+                    { cat: "Оптика и Освещение", name: "Яркость ангельских глазок 100% ночью", desc: "Убирает притухание колец DRL при включении ближнего света фар." },
+                    { cat: "Оптика и Освещение", name: "Стробоскопы", desc: "Туманки отключаются в момент моргания дальним светом." },
+                    { cat: "Оптика и Освещение", name: "Подсветка поворотов (Cornering Lights)", desc: "ПТФ включаются на малых скоростях при повороте руля." },
+                    { cat: "Оптика и Освещение", name: "Подсветка дверных ручек", desc: "Загорается при включении задней передачи для освещения асфальта." },
+                    { cat: "Оптика и Освещение", name: "Задние габариты с ДХО", desc: "Задние LED полосы горят в дневном режиме всегда." },
+
+                    { cat: "Мультимедиа и Приборная панель", name: "Цифровой спидометр на БК", desc: "Вывод точной скорости в цифрах." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Видео в движении", desc: "Разблокировка просмотра видео с USB/DVD на ходу." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Спортивные приборы", desc: "Шкалы мощности и крутящего момента на NBT/CIC." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Заставка M-Performance", desc: "Меняет стартовый экран монитора на эмблему ///M." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Логотип ///M на приборке 6WA", desc: "Выводит шильдик по центру расширенной панели приборов (Black Panel)." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Давление и температура шин", desc: "Отображение точной температуры внутри баллона в меню RDC." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Проекция (HUD): поворотники", desc: "Отображение моргания поворотников на лобовом стекле." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Проекция (HUD): список треков", desc: "Вывод списка музыки и звонков на лобовое стекло." },
+
+                    { cat: "Диагностика и Сервис", name: "Регистрация замены АКБ", desc: "Прописка нового аккумулятора (изменение типа/емкости)." },
+                    { cat: "Диагностика и Сервис", name: "Диагностика блоков", desc: "Чтение и сброс ошибок." }
                 ]
             },
-            "F25": {
-                name: "X3 / X4 (F25, F26)",
-                popular: [
-                    { name: "Память кнопки Start-Stop", desc: "Запоминание последнего состояния автоматического глушения мотора." },
-                    { name: "Закрытие багажника с ключа без удержания", desc: "Автоматическое закрытие багажной двери в одно касание с кнопки на брелоке или в ногах." },
-                    { name: "Складывание зеркал при закрытии", desc: "Складывание лопухов сразу при блокировке замков автомобиля." },
-                    { name: "Спортивная коробка (2TB) и Sport+", desc: "Активация режима 2TB для резвых переключений и разблокировка режима вождения Sport+." },
-                    { name: "Цифровой спидометр", desc: "Текущая скорость цифрами на экране под тахометром." },
-                    { name: "Отключение омывателя фар", desc: "Деактивация форсунок стеклоомывателя на фарах." },
-                    { name: "Спортивные приборы", desc: "Индикация показателей мощности и момента на мониторе." }
-                ],
+            "X5, X6": {
+                name: "X5, X6 (F-кузова)",
+                codes: "F15, F16, F85, F86",
                 all: [
-                    { cat: "Салон и комфорт", name: "Отключение зуммера ремней безопасности", desc: "Деактивация звукового оповещения при непристегнутом ремне." },
-                    { cat: "Салон и комфорт", name: "Выключение мультимедиа при выходе", desc: "Обесточивание радио и дисплея при открытии двери." },
-                    { cat: "Салон и комфорт", name: "Работа стекол при открытой двери", desc: "Стеклоподъемники не прерывают ход, если распахнуть дверь." },
-                    { cat: "Оптика", name: "Подсветка поворотов", desc: "Активация функции Cornering Lights через противотуманные фары." },
-                    { cat: "Оптика", name: "Стробоскопы", desc: "Гашение ПТФ при включении дальнего света." },
-                    { cat: "Оптика", name: "Яркость ангельских глазок", desc: "Работа колец на 100% мощности в ночном режиме." },
-                    { cat: "Мультимедиа и сервис", name: "Видео в движении", desc: "Разблокировка просмотра видео." },
-                    { cat: "Мультимедиа и сервис", name: "Давление и температура RDC", desc: "Детальная информация о состоянии шин на экране." },
-                    { cat: "Мультимедиа и сервис", name: "Диагностика и адаптации АКБ", desc: "Чтение ошибок, регистрация замены аккумулятора." }
+                    { cat: "Двигатель и Трансмиссия", name: "Память кнопки Start-Stop", desc: "Мотор не глохнет сам по себе на каждом перекрестке — сохраняется прошлое положение кнопки." },
+                    { cat: "Двигатель и Трансмиссия", name: "Спортивная коробка (2TB) + Launch Control", desc: "Активация спорт-алгоритмов переключения передач и режима старта с двух педалей." },
+                    { cat: "Двигатель и Трансмиссия", name: "Режим вождения Sport+", desc: "Самый злой режим работы двигателя, коробки и полного привода xDrive." },
+                    
+                    { cat: "Салон и Комфорт", name: "Закрытие багажника без удержания кнопки", desc: "Верхняя створка багажника закрывается одним коротким нажатием с ключа или кнопки в ногах водителя." },
+                    { cat: "Салон и Комфорт", name: "Отключение зуммера ремней", desc: "Машина перестает ругаться на непристегнутые ремни (подушки безопасности активны)." },
+                    { cat: "Салон и Комфорт", name: "Складывание зеркал при закрытии", desc: "Зеркала складываются моментально без долгого нажатия на пульт." },
+                    { cat: "Салон и Комфорт", name: "Работа стекол при открытой двери", desc: "Автоматический доводчик стекол не прерывается, если открыть дверь." },
+                    { cat: "Салон и Комфорт", name: "Отключение музыки при выходе", desc: "Автоматическое гашение ГУ при открытии водительской двери." },
+                    { cat: "Салон и Комфорт", name: "Память подогрева сидений", desc: "Кресла запоминают последний уровень подогрева при коротких остановках." },
+                    { cat: "Салон и Комфорт", name: "Память обогрева руля", desc: "Руль остается горячим при перезапуске зажигания." },
+
+                    { cat: "Оптика и Освещение", name: "Отключение омывателя фар", desc: "Полная деактивация омывателей для чистоты огромного капота." },
+                    { cat: "Оптика и Освещение", name: "Стробоскопы (Туманки + Дальний)", desc: "Попеременное моргание LED-туманками и дальним светом." },
+                    { cat: "Оптика и Освещение", name: "Туманки в режиме Cornering Lights", desc: "Освещение слепых зон ПТФ при повороте руля." },
+                    { cat: "Оптика и Освещение", name: "Яркость ангельских глазок на 100%", desc: "Яркий свет колец в ночном режиме работы ближнего." },
+                    { cat: "Оптика и Освещение", name: "Подсветка ручек", desc: "Загорается при включении задней передачи." },
+
+                    { cat: "Мультимедиа и Приборная панель", name: "Видео в движении (NBT / EVO)", desc: "Снятие блокировки на воспроизведение видео при скорости выше 3 км/ч." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Фаркоп-зум камеры заднего вида", desc: "Дополнительный режим обзора камеры (вид сверху вниз на бампер). Очень удобно для парковки в миллиметрах." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Меню Bang & Olufsen", desc: "Активация расширенных настроек объемного звука DSP (на системах Harman/Kardon и NBT)." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Спорт-приборы и M-логотип", desc: "Отображение лошадиных сил, крутящего момента и M-заставки (X5M / X6M)." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Температура шин", desc: "Вывод точной температуры в градусах на экран системы давления шин." },
+                    { cat: "Мультимедиа и Приборная панель", name: "Цифровой спидометр", desc: "Крупные цифры скорости на приборке." },
+                    
+                    { cat: "Диагностика", name: "Чтение ошибок ISTA", desc: "Полное сканирование всех систем внедорожника и удаление чеков." }
                 ]
             },
-            "MINI": {
-                name: "MINI (F55, F56, F54, F60)",
-                popular: [
-                    { name: "Память системы Start-Stop", desc: "Миник больше не будет глохнуть на каждом светофоре — машина запоминает нажатую кнопку навсегда." },
-                    { name: "Спортивные приборы John Cooper Works (JCW)", desc: "Стильные шкалы мощности и крутящего момента JCW на экране мультимедиа." },
-                    { name: "Складывание зеркал с ключа", desc: "Автоматическое складывание зеркал при постановке на охрану без долгого удержания кнопки." },
-                    { name: "Отключение звука непристегнутого ремня", desc: "Убирает назойливый писк. Система безопасности и подушки продолжают работать в штатном режиме." },
-                    { name: "Видео в движении", desc: "Снятие блокировки на просмотр видеороликов во время езды." }
-                ],
+            "X3, X4": {
+                name: "X3, X4 (F-кузова)",
+                codes: "F25, F26",
                 all: [
-                    { cat: "Комфорт и салон", name: "Работа стекол при открытой двери", desc: "Стекла продолжают закрываться/открываться, даже если дверь распахнута." },
-                    { cat: "Комфорт и салон", name: "Выключение магнитолы при открытии двери", desc: "Музыка тухнет автоматически, когда водитель выходит из машины, не нужно нажимать кнопку Start/Stop дважды." },
-                    { cat: "Комфорт и салон", name: "Память подогрева сидений", desc: "Если заглушил машину ненадолго, подогрев останется на том же уровне мощности." },
-                    { cat: "Оптика", name: "Включение задних габаритов с ДХО", desc: "Задние фонари горят всегда в дневном режиме вместе с передними кольцами/дугами." },
-                    { cat: "Оптика", name: "Подсветка дверных ручек задним ходом", desc: "Светодиоды в ручках освещают бордюры при включении задней передачи." },
+                    { cat: "Трансмиссия", name: "Память кнопки Start-Stop", desc: "Запоминание последнего состояния автоматического глушения мотора." },
+                    { cat: "Трансмиссия", name: "Спортивная коробка (2TB) и Sport+", desc: "Активация режима 2TB для резвых переключений и открытие Sport+." },
+                    
+                    { cat: "Комфорт", name: "Закрытие багажника с ключа без удержания", desc: "Автоматическое закрытие багажной двери в одно касание (без долгого нажатия)." },
+                    { cat: "Комфорт", name: "Складывание зеркал при закрытии", desc: "Складывание лопухов сразу при блокировке замков." },
+                    { cat: "Комфорт", name: "Отключение зуммера ремней", desc: "Деактивация звукового оповещения при непристегнутом ремне." },
+                    { cat: "Комфорт", name: "Работа стекол при открытой двери", desc: "Стеклоподъемники не прерывают ход, если распахнуть дверь." },
+                    { cat: "Комфорт", name: "Выключение ГУ", desc: "Музыка тухнет при выходе из авто." },
+
+                    { cat: "Оптика", name: "Подсветка поворотов", desc: "Активация функции Cornering Lights через ПТФ." },
+                    { cat: "Оптика", name: "Отключение омывателя фар", desc: "Сохранение омывайки и чистого кузова." },
+                    { cat: "Оптика", name: "Стробоскопы", desc: "Гашение ПТФ при дальнем свете." },
+
+                    { cat: "Мультимедиа", name: "Видео в движении", desc: "Разблокировка просмотра видео на ходу." },
+                    { cat: "Мультимедиа", name: "Цифровой спидометр", desc: "Текущая скорость цифрами на экране под тахометром." },
+                    { cat: "Мультимедиа", name: "Спорт-приборы", desc: "Шкалы мощности на мониторе." },
+
+                    { cat: "Диагностика", name: "Чтение и сброс ошибок", desc: "Компьютерная диагностика систем автомобиля." }
+                ]
+            },
+            "X1, X2 & MINI": {
+                name: "X1, X2, MINI (Платформа UKL)",
+                codes: "F48, F39, F54, F55, F56, F57, F60",
+                all: [
+                    { cat: "Двигатель", name: "Память системы Start-Stop", desc: "Машина больше не будет глохнуть на каждом светофоре — запоминает нажатую кнопку навсегда." },
+                    { cat: "Двигатель", name: "Спортивная коробка (JCW / Sport)", desc: "Изменение логики работы айсиновского автомата для более быстрых переключений." },
+
+                    { cat: "Салон и Комфорт", name: "Складывание зеркал с ключа", desc: "Автоматическое складывание зеркал при постановке на охрану без долгого удержания." },
+                    { cat: "Салон и Комфорт", name: "Отключение звука непристегнутого ремня", desc: "Убирает назойливый писк. Система безопасности работает в штатном режиме." },
+                    { cat: "Салон и Комфорт", name: "Работа стекол при открытой двери", desc: "Стекла продолжают закрываться, даже если дверь распахнута." },
+                    { cat: "Салон и Комфорт", name: "Выключение магнитолы при открытии двери", desc: "Музыка тухнет автоматически, когда водитель выходит из машины." },
+                    { cat: "Салон и Комфорт", name: "Память подогрева сидений", desc: "Кресла остаются теплыми после короткой остановки." },
+
+                    { cat: "Оптика", name: "Включение задних габаритов с ДХО", desc: "Задние фонари (Union Jack или обычные) горят всегда в дневном режиме." },
                     { cat: "Оптика", name: "Отключение омывателей фар", desc: "Деактивация полива фар для сохранения жидкости." },
-                    { cat: "Мультимедиа и звук", name: "Смена звука гонга на BMW или Rolls-Royce", desc: "Замена стандартных системных звуков предупреждений и поворотников на звуки от BMW или RR." },
-                    { cat: "Мультимедиа и звук", name: "Рингтон телефона из динамиков", desc: "Воспроизведение оригинальной мелодии твоего телефона при входящем звонке." },
-                    { cat: "Мультимедиа и звук", name: "Температура шин", desc: "Отображение точной температуры в меню давления шин." },
-                    { cat: "Диагностика", name: "Чтение и сброс ошибок", desc: "Быстрая диагностика и очистка памяти неисправностей (через BimmerLink)." },
-                    { cat: "Диагностика", name: "Регистрация нового АКБ", desc: "Обязательная прописка новой батареи при ее замене, чтобы генератор давал правильный заряд." }
+                    { cat: "Оптика", name: "Подсветка ручек", desc: "Диоды наружных ручек загораются при движении задним ходом." },
+
+                    { cat: "Мультимедиа", name: "Спортивные приборы (JCW)", desc: "Стильные красно-черные шкалы мощности и крутящего момента JCW на экране мультимедиа." },
+                    { cat: "Мультимедиа", name: "Видео в движении", desc: "Снятие блокировки на просмотр видеороликов во время езды." },
+                    { cat: "Мультимедиа", name: "Смена звука гонга (MINI / BMW)", desc: "Замена системных звуков, поворотников и парктроников с BMW на Rolls-Royce или MINI." },
+                    { cat: "Мультимедиа", name: "Рингтон телефона из динамиков", desc: "Воспроизведение оригинальной мелодии смартфона при звонке." },
+                    { cat: "Мультимедиа", name: "Отключение предупреждений", desc: "Убирает юридический текст при включении камеры." },
+                    
+                    { cat: "Диагностика", name: "Сброс сервиса и ошибок", desc: "Чтение неисправностей, регистрация замены аккумулятора, сброс ТО." }
                 ]
             }
         };
 
-        let currentModel = "F20 / F30";
+        let currentModel = "1, 2, 3, 4 Series";
 
-        function updateTgLink(modelName) {
-            const message = `Привет! Смотрел каталог скрытых опций, интересует кодирование на ${modelName}.`;
-            const tgLink = document.getElementById("tgLink");
-            tgLink.href = `https://t.me/${tgUsername}?text=${encodeURIComponent(message)}`;
+        function updateLinkUrls(modelName) {
+            const message = `Привет! Интересует кодирование на ${modelName}.`;
+            const encoded = encodeURIComponent(message);
+            document.getElementById("tgBtn").href = `https://t.me/${tgUsername}?text=${encoded}`;
+            document.getElementById("maxBtn").href = maxLink;
         }
 
         function renderModels() {
@@ -430,7 +492,7 @@
             Object.keys(modelsData).forEach(key => {
                 const btn = document.createElement("button");
                 btn.className = `model-btn ${key === currentModel ? 'active' : ''}`;
-                btn.textContent = key;
+                btn.innerHTML = `${modelsData[key].name}<span>${modelsData[key].codes}</span>`;
                 btn.onclick = () => selectModel(key);
                 grid.appendChild(btn);
             });
@@ -444,41 +506,15 @@
 
         function renderCatalog() {
             const data = modelsData[currentModel];
-            const totalOptions = data.popular.length + data.all.length;
+            const totalOptions = data.all.length;
             
-            document.getElementById("selectedModelLabel").textContent = `Выбран: ${data.name}`;
+            document.getElementById("selectedModelLabel").textContent = `Кузов: ${data.name}`;
             document.getElementById("optionsCountLabel").textContent = `Доступно опций: ${totalOptions}`;
             
-            updateTgLink(data.name);
+            updateLinkUrls(data.name);
 
             const container = document.getElementById("catalogContainer");
             container.innerHTML = "";
-            
-            if (data.popular && data.popular.length > 0) {
-                const popBlock = document.createElement("div");
-                popBlock.className = "category-block";
-                
-                const popTitle = document.createElement("div");
-                popTitle.className = "category-title popular";
-                popTitle.textContent = "Часто используемые настройки";
-                popBlock.appendChild(popTitle);
-
-                const popList = document.createElement("div");
-                popList.className = "options-list";
-
-                data.popular.forEach(opt => {
-                    const card = document.createElement("div");
-                    card.className = "option-card popular-card";
-                    card.innerHTML = `
-                        <div class="option-name">${opt.name}</div>
-                        <div class="option-desc">${opt.desc}</div>
-                    `;
-                    popList.appendChild(card);
-                });
-                
-                popBlock.appendChild(popList);
-                container.appendChild(popBlock);
-            }
             
             const categories = {};
             data.all.forEach(opt => {
@@ -489,25 +525,21 @@
             Object.keys(categories).forEach(catName => {
                 const block = document.createElement("div");
                 block.className = "category-block";
-
                 const title = document.createElement("div");
                 title.className = "category-title";
                 title.textContent = catName;
                 block.appendChild(title);
-
+                
                 const list = document.createElement("div");
                 list.className = "options-list";
-
+                
                 categories[catName].forEach(opt => {
                     const card = document.createElement("div");
                     card.className = "option-card";
-                    card.innerHTML = `
-                        <div class="option-name">${opt.name}</div>
-                        <div class="option-desc">${opt.desc}</div>
-                    `;
+                    card.innerHTML = `<div class="option-name">${opt.name}</div><div class="option-desc">${opt.desc}</div>`;
                     list.appendChild(card);
                 });
-
+                
                 block.appendChild(list);
                 container.appendChild(block);
             });
