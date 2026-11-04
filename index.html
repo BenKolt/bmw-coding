@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW Coding Сочи | Кодирование и диагностика</title>
+    <style>
+        :root {
+            --bg-color: #111;
+            --card-bg: #1a1a1a;
+            --text-main: #f5f5f5;
+            --text-muted: #888;
+            --accent-blue: #0082b6;
+            --accent-dark-blue: #002554;
+            --accent-red: #f91536;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        .m-stripes { display: flex; height: 5px; width: 100%; }
+        .m-stripes div { flex: 1; }
+        .stripe-1 { background-color: var(--accent-blue); }
+        .stripe-2 { background-color: var(--accent-dark-blue); }
+        .stripe-3 { background-color: var(--accent-red); }
+
+        header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #333; }
+        header h1 { font-size: 2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+        header p { color: var(--text-muted); margin-top: 10px; font-size: 1.1rem; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+
+        .section-title { font-size: 1.5rem; margin-bottom: 20px; border-left: 4px solid var(--accent-red); padding-left: 10px; }
+
+        .calculator { background: var(--card-bg); padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-muted); }
+        select, input[type="text"] { width: 100%; padding: 12px; border: 1px solid #333; background: #222; color: #fff; border-radius: 5px; font-size: 1rem; outline: none; }
+        select:focus, input[type="text"]:focus { border-color: var(--accent-blue); }
+
+        .options-list { margin: 20px 0; display: flex; flex-direction: column; gap: 15px; }
+        .option-item { display: flex; justify-content: space-between; align-items: center; background: #222; padding: 15px; border-radius: 5px; border: 1px solid #333; cursor: pointer; transition: 0.2s; }
+        .option-item:hover { border-color: #444; }
+        .option-label { display: flex; align-items: center; gap: 10px; flex: 1; cursor: pointer; }
+        .option-price { font-weight: bold; color: var(--accent-red); }
+
+        input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--accent-red); cursor: pointer; }
+
+        .total-price { font-size: 1.8rem; font-weight: bold; text-align: right; margin: 20px 0; border-top: 1px solid #333; padding-top: 20px; }
+
+        .btn-submit { width: 100%; padding: 15px; background: var(--accent-red); color: #fff; font-size: 1.2rem; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        .btn-submit:hover { background: #d90f2b; }
+
+        .footer-info { text-align: center; margin-top: 40px; color: var(--text-muted); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <div class="m-stripes">
+        <div class="stripe-1"></div>
+        <div class="stripe-2"></div>
+        <div class="stripe-3"></div>
+    </div>
+
+    <header>
+        <h1>BMW Coding Сочи</h1>
+        <p>Активация скрытых опций и диагностика дилерским софтом (F/G-серии)</p>
+    </header>
+
+    <div class="container">
+        <div class="calculator">
+            <h2 class="section-title">Собери свой пакет</h2>
+            
+            <div class="form-group">
+                <label>Твой кузов</label>
+                <select id="carModel">
+                    <option value="F20/F30">F20 / F30 (1-3 серия)</option>
+                    <option value="F10">F10 (5 серия)</option>
+                    <option value="G-series">G-серия (G20, G30 и др.)</option>
+                    <option value="Other">Другой (уточним в чате)</option>
+                </select>
+            </div>
+
+            <div class="options-list" id="optionsContainer">
+                <!-- Чекбоксы -->
+                <label class="option-item">
+                    <div class="option-label">
+                        <input type="checkbox" class="coding-option" data-price="500" data-name="Память Start-Stop">
+                        Отключение / Память Start-Stop
+                    </div>
+                    <div class="option-price">500 ₽</div>
+                </label>
+
+                <label class="option-item">
+                    <div class="option-label">
+                        <input type="checkbox" class="coding-option" data-price="500" data-name="Складывание зеркал">
+                        Складывание зеркал с брелока (без задержки)
+                    </div>
+                    <div class="option-price">500 ₽</div>
+                </label>
+
+                <label class="option-item">
+                    <div class="option-label">
+                        <input type="checkbox" class="coding-option" data-price="1000" data-name="Спорт-приборы и M-анимация">
+                        Спорт-приборы и M-анимация (NBT / EntryNav)
+                    </div>
+                    <div class="option-price">1000 ₽</div>
+                </label>
+
+                <label class="option-item">
+                    <div class="option-label">
+                        <input type="checkbox" class="coding-option" data-price="500" data-name="Цифровой спидометр">
+                        Цифровой спидометр на приборке
+                    </div>
+                    <div class="option-price">500 ₽</div>
+                </label>
+
+                <label class="option-item">
+                    <div class="option-label">
+                        <input type="checkbox" class="coding-option" data-price="1500" data-name="Чтение ошибок ISTA+">
+                        Полная диагностика и сброс ошибок (ISTA+)
+                    </div>
+                    <div class="option-price">1500 ₽</div>
+                </label>
+            </div>
+
+            <div class="total-price">
+                Итого: <span id="totalSum">0</span> ₽
+            </div>
+
+            <div class="form-group">
+                <label>Твой Telegram (или телефон для связи)</label>
+                <input type="text" id="contactInfo" placeholder="@username или +7 (999) 000-00-00">
+            </div>
+
+            <button class="btn-submit" id="submitBtn">Отправить заявку</button>
+        </div>
+
+        <div class="footer-info">
+            Работаю E-Sys и ISTA+. Без риска окирпичить блоки.<br>
+            Адлер / Сириус / Сочи
+        </div>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('.coding-option');
+        const totalSumEl = document.getElementById('totalSum');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Калькулятор
+        function calculateTotal() {
+            let total = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    total += parseInt(cb.dataset.price);
+                }
+            });
+            totalSumEl.textContent = total;
+        }
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', calculateTotal);
+        });
+
+        // Кнопка отправки
+        submitBtn.addEventListener('click', () => {
+            const contact = document.getElementById('contactInfo').value;
+            const model = document.getElementById('carModel').value;
+            
+            if (!contact) {
+                alert('Слыш, контакт оставь, куда тебе писать-то?');
+                return;
+            }
+
+            let selectedOptions = [];
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    selectedOptions.push(cb.dataset.name);
+                }
+            });
+
+            if (selectedOptions.length === 0) {
+                alert('Выбери хоть одну опцию, че воздух гонять.');
+                return;
+            }
+
+            // Пока просто выводим алерт. Потом прикрутим отправку в Телегу.
+            alert(`Заявка готова!\n\nКузов: ${model}\nОпции: ${selectedOptions.join(', ')}\nСумма: ${totalSumEl.textContent} ₽\nКонтакт: ${contact}\n\nДальше прикрутим отправку в твой Telegram.`);
+        });
+    </script>
+</body>
+</html>
